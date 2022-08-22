@@ -1,6 +1,7 @@
+import { NextPage } from "next";
 
 
-const Home = () => {
+const Home: NextPage = () => {
   return (
     <div>
       <h1>Sample</h1>
