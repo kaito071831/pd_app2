@@ -1,1 +1,50 @@
 version: '3.9'
+
+services:
+  db:
+    container_name: db
+    image: mysql:8.0.30
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: pd_app
+      MYSQL_PASSWORD: password
+    ports:
+      - 4306:3306
+    volumes:
+      - type: volume
+        source: mysql-db
+        target: /var/lib/mysql
+
+  api:
+    container_name: api
+    tty: true
+    depends_on:
+      - db
+    build:
+      context: ./back/
+      dockerfile: Dockerfile
+    ports:
+      - 3000:3000
+    volumes:
+      - type: bind
+        source: ./back
+        target: /pdapi
+    command: rails server -b 0.0.0.0
+
+  app:
+    container_name: app
+    build:
+      context: ./front/
+      dockerfile: Dockerfile
+    volumes:
+      - type: bind
+        source: ./front
+        target: /frontapp
+    command: yarn dev
+    ports:
+      - 8000:3000
+
+volumes:
+  mysql-db:
+    driver: local
