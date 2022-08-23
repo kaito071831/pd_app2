@@ -25,6 +25,8 @@
 !/back/storage/.keep
 /back/.byebug_history
 
+/back/.env
+
 # Ignore master key for decrypting credentials and more.
 /back/config/master.key
 
@@ -57,7 +59,7 @@
 
 # local env files
 /front/.env*.local
-
+/front/.env
 # vercel
 /front/.vercel
 
