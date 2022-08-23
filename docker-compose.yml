@@ -10,7 +10,7 @@ services:
       MYSQL_DATABASE: pd_app
       MYSQL_PASSWORD: password
     ports:
-      - 4306:3306
+      - 3306:3306
     volumes:
       - type: volume
         source: mysql-db
@@ -30,6 +30,8 @@ services:
       - type: bind
         source: ./back
         target: /pdapi
+    env_file:
+      - ./back/.env
     command: rails server -b 0.0.0.0
 
   app:
@@ -37,13 +39,16 @@ services:
     build:
       context: ./front/
       dockerfile: Dockerfile
+    ports:
+      - 8000:8000
     volumes:
       - type: bind
         source: ./front
         target: /frontapp
+    env_file:
+      - ./front/.env
     command: yarn dev
-    ports:
-      - 8000:3000
+
 
 volumes:
   mysql-db:
