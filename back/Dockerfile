@@ -1,14 +1,19 @@
-FROM ruby:2.7.5
+FROM ubuntu:22.04
 
-# yarnパッケージ管理ツールをインストール
-RUN apt-get update && apt-get install -y curl apt-transport-https wget && \
-curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - && \
-echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list && \
-apt-get update && apt-get install -y yarn
+SHELL ["/bin/bash", "-c"]
 
-RUN apt-get update -qq && apt-get install -y nodejs yarn
+ENV TZ Asia/Tokyo
+ENV LANG ja_JP.UTF-8
+ENV LANGUAGE ja_JP:ja
+
+RUN apt-get update && apt-get install -y build-essential git curl wget libssl-dev libreadline-dev zlib1g-dev openssl libmysqlclient-dev
+RUN git clone --depth=1 https://github.com/rbenv/ruby-build
+RUN PREFIX=/usr/local ./ruby-build/install.sh
+RUN rm -rf ruby-build
+RUN ruby-build 2.7.5 /usr/local
 RUN mkdir /pdapi
 WORKDIR /pdapi
+
 COPY Gemfile /pdapi/Gemfile
 COPY Gemfile.lock /pdapi/Gemfile.lock
 RUN bundle install
