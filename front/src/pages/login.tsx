@@ -21,7 +21,7 @@ const Login: NextPage = () => {
       setIsError(false);
       setErrorMessage("");
       return await axiosInstance
-        .post("auth/sign_in",{
+        .post("auth/sign_in", {
           email: signData.get("email"),
           password: signData.get("password"),
         })
@@ -29,7 +29,7 @@ const Login: NextPage = () => {
           Cookies.set("uid", response.headers["uid"]);
           Cookies.set("client", response.headers["client"]);
           Cookies.set("access-token", response.headers["access-token"]);
-          router.push("/");
+          router.push("/boards");
         })
         .catch(error => {
           Cookies.remove("uid");
