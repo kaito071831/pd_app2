@@ -4,11 +4,17 @@ import { withAuthServerSideProps } from "../../libs/auth";
 
 export const getServerSideProps: GetServerSideProps = withAuthServerSideProps("api/v1/boards");
 
-const Boards = () => {
+const Boards = ({data}) => {
   return(
     <>
       Boards
       <Logout_button/>
+      {data.data.map((board, index) => (
+        <div id={index}>
+          <p>{board.id}</p>
+          <p>{board.title}</p>
+        </div>
+      ))}
     </>
   )
 }
