@@ -10,5 +10,4 @@ class Api::V1::BoardsController < ApplicationController
         boards: boards
       }
   end
-
 end
