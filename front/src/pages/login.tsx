@@ -11,12 +11,23 @@ const Login: NextPage = () => {
   const handleSubmit = (event: any) => {
     event.preventDefault();
     const signData = new FormData(event.currentTarget);
-    const axiosInstance: AxiosInstance = axios.create({
-      baseURL: `http://localhost:3000/api/v1/`,
-      headers: {
-        "content-type": "application/json",
-      },
-    });
+    const createAxiosInstance: () => AxiosInstance = () => {
+      if (process.env.NODE_ENV === "development"){
+        return axios.create({
+          baseURL: `/api/v1/`,
+          headers: {
+            "content-type": "application/json",
+          },
+        });
+      }
+      return axios.create({
+        baseURL: `${process.env.API_ORIGIN}/api/v1/`,
+        headers: {
+          "content-type": "application/json",
+        },
+      });
+    }
+    const axiosInstance: AxiosInstance = createAxiosInstance();
     (async () => {
       setIsError(false);
       setErrorMessage("");
@@ -36,7 +47,8 @@ const Login: NextPage = () => {
           removeCookie("client");
           removeCookie("access-token");
           setIsError(true);
-          setErrorMessage(error.response.data.errors[0]);
+          console.log(error.response.data);
+          setErrorMessage(error.response.data);
         });
     })();
   }

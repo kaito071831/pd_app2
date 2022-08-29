@@ -9,15 +9,30 @@ export const Logout_button = () => {
   const [errorMeesage, setErrorMessage] = useState<string>("");
   const handleSubmit = (event: any) => {
     event.preventDefault();
-    const axiosInstance: AxiosInstance = axios.create({
-      baseURL: `http://localhost:3000/api/v1/`,
-      headers: {
-        "content-type": "application/json",
-        uid: getCookie("uid"),
-        "access-token": getCookie("access-token"),
-        client: getCookie("client"),
-      },
-    });
+    const createAxiosInstance: () => AxiosInstance = () => {
+      if (process.env.NODE_ENV === "development"){
+        return axios.create({
+          baseURL: `/api/v1/`,
+          headers: {
+            "content-type": "application/json",
+            uid: getCookie("uid"),
+            "access-token": getCookie("access-token"),
+            client: getCookie("client"),
+          },
+        });
+      }
+      return axios.create({
+        baseURL: `${process.env.API_ORIGIN}/api/v1/`,
+        headers: {
+          "content-type": "application/json",
+          uid: getCookie("uid"),
+          "access-token": getCookie("access-token"),
+          client: getCookie("client"),
+        },
+      });
+
+    }
+    const axiosInstance: AxiosInstance = createAxiosInstance();
     (async () => {
       setIsError(false);
       setErrorMessage("");

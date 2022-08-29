@@ -3,8 +3,8 @@ import { GetServerSideProps } from "next";
 export const withAuthServerSideProps = (url: string): GetServerSideProps => {
   return async (context) => {
     const {req, res} = context;
-
-    const response: Response = await fetch(`${process.env.API_ORIGIN}/${url}`, {
+    const authURI: string = (process.env.NODE_ENV === "development") ? process.env.APP_ORIGIN : process.env.API_ORIGIN;
+    const response: Response = await fetch(`${authURI}/${url}`, {
       headers: {
         "Content-Type": "application/json",
         uid: req.cookies["uid"],
