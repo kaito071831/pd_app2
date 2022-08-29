@@ -11,7 +11,6 @@ type Props = {
 
 const Boards = ({data}: Props) => {
   const boardIndex: Board[] = data.boards;
-  console.log(boardIndex);
   return(
     <>
       Boards
