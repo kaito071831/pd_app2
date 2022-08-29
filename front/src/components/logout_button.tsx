@@ -1,7 +1,7 @@
 import axios, { AxiosInstance } from "axios";
-import Cookies from "js-cookie";
 import { NextRouter, useRouter } from "next/router"
 import { useState } from "react";
+import { getCookie, removeCookie } from "typescript-cookie";
 
 export const Logout_button = () => {
   const router: NextRouter = useRouter();
@@ -13,9 +13,9 @@ export const Logout_button = () => {
       baseURL: `http://localhost:3000/api/v1/`,
       headers: {
         "content-type": "application/json",
-        "uid": Cookies.get("uid"),
-        "access-token": Cookies.get("access-token"),
-        "client": Cookies.get("client"),
+        "uid": getCookie("uid"),
+        "access-token": getCookie("access-token"),
+        "client": getCookie("client"),
       },
     });
     (async () => {
@@ -24,9 +24,9 @@ export const Logout_button = () => {
       return await axiosInstance
         .delete("auth/sign_out")
         .then(() => {
-          Cookies.remove("uid");
-          Cookies.remove("client");
-          Cookies.remove("access-token");
+          removeCookie("uid");
+          removeCookie("client");
+          removeCookie("access-token");
           router.push("/");
         })
         .catch(error => {
