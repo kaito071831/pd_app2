@@ -1,6 +1,6 @@
 import { NextPage } from "next";
 import { NextRouter, useRouter } from "next/router";
-import axios, { AxiosInstance } from "axios"
+import axios, { AxiosInstance, AxiosResponse } from "axios"
 import { useState } from "react";
 import { removeCookie, setCookie } from "typescript-cookie";
 
@@ -25,13 +25,13 @@ const Login: NextPage = () => {
           email: signData.get("email"),
           password: signData.get("password"),
         })
-        .then(response => {
+        .then((response: AxiosResponse) => {
           setCookie("uid", response.headers["uid"]);
           setCookie("client", response.headers["client"]);
           setCookie("access-token", response.headers["access-token"]);
           router.push("/boards");
         })
-        .catch(error => {
+        .catch((error: any) => {
           removeCookie("uid");
           removeCookie("client");
           removeCookie("access-token");
