@@ -7,7 +7,7 @@ class Api::V1::BoardsController < ApplicationController
       {
         status: 'SUCCESS',
         message: 'Loaded Boards',
-        data: boards
+        boards: boards
       }
   end
 
