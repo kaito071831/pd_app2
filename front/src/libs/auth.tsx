@@ -22,7 +22,7 @@ export const withAuthServerSideProps = (url: string): GetServerSideProps => {
       };
     }
 
-    const props = await response.json();
+    const props: any = await response.json();
     return{
       props: {
         data: props

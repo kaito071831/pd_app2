@@ -13,9 +13,9 @@ export const Logout_button = () => {
       baseURL: `http://localhost:3000/api/v1/`,
       headers: {
         "content-type": "application/json",
-        "uid": getCookie("uid"),
+        uid: getCookie("uid"),
         "access-token": getCookie("access-token"),
-        "client": getCookie("client"),
+        client: getCookie("client"),
       },
     });
     (async () => {
