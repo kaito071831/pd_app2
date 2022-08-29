@@ -16,7 +16,7 @@ const Boards = ({data}: Props) => {
       Boards
       <Logout_button/>
       {boardIndex.map((board: Board) => (
-        <div id={board.id.toString()}>
+        <div key={board.id}>
           <p>{board.id}</p>
           <p>{board.title}</p>
         </div>
