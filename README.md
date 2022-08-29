@@ -5,9 +5,8 @@
 - スレッドも作れたら実装したい
 
 # 開発環境
-- Ruby 2.7.5
-- Ruby on Rails 6.1.4.1
+- Ruby 3.1.2
+- Ruby on Rails 7.0.3.1
 - Node.js 16.13.0
 - Next.js 12.2.5
 - MySQL 8.0.30
-
