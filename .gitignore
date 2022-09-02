@@ -26,6 +26,7 @@
 /back/.byebug_history
 
 /back/.env
+/back/.rspec
 
 # Ignore master key for decrypting credentials and more.
 /back/config/master.key
