@@ -8,5 +8,5 @@ export type Board = {
 export type Boards = {
   status: string
   message: string
-  boards: Board[]
+  data: Board[]
 }
