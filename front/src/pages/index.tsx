@@ -6,7 +6,7 @@ const Home: NextPage = () => {
   return (
     <div>
       <h1>Sample</h1>
-      <Link href="/login">
+      <Link href="/sign_in">
         <a>ログイン</a>
       </Link>
     </div>

@@ -4,7 +4,7 @@ import axios, { AxiosInstance, AxiosResponse } from "axios"
 import { useState } from "react";
 import { removeCookie, setCookie } from "typescript-cookie";
 
-const Login: NextPage = () => {
+const Sign_in: NextPage = () => {
   const router: NextRouter = useRouter();
   const [isError, setIsError] = useState<boolean>(false);
   const [errorMessage, setErrorMessage] = useState<string>("");
@@ -70,4 +70,4 @@ const Login: NextPage = () => {
   )
 }
 
-export default Login;
+export default Sign_in;
