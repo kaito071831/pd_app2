@@ -10,9 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_08_29_204608) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_04_203534) do
   create_table "boards", charset: "utf8mb4", force: :cascade do |t|
     t.string "title", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "comments", charset: "utf8mb4", force: :cascade do |t|
+    t.string "name", default: "名無し", null: false
+    t.text "comment", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -30,7 +37,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_29_204608) do
     t.datetime "confirmation_sent_at"
     t.string "unconfirmed_email"
     t.string "name"
-    t.string "nickname"
+    t.string "nickname", null: false
     t.string "image"
     t.string "email"
     t.text "tokens"

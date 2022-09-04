@@ -44,6 +44,7 @@ const Sign_up: NextPage = () => {
           email: email,
           password: password,
           password_confirmation: password_confirmation,
+          nickname: email,
           confirm_success_url: `http://localhost:8000/sign_in`,
         })
         .then(() => {
