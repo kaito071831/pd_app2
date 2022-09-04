@@ -60,9 +60,9 @@ const Sign_in: NextPage = () => {
         ) : null}
         <form onSubmit={handleSubmit}>
           <label>メールアドレス</label>
-          <input id="email" name="email" title="メールアドレス" autoComplete="email" autoFocus/>
+          <input name="email" title="メールアドレス" autoComplete="email" autoFocus/>
           <label>パスワード</label>
-          <input id="password" name="password" title="パスワード" type="password" autoComplete="current-password"/>
+          <input name="password" title="パスワード" type="password" autoComplete="current-password"/>
           <button type="submit" title="ログイン">ログイン</button>
         </form>
       </div>
