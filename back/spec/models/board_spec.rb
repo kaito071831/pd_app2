@@ -6,7 +6,7 @@ RSpec.describe Board, type: :model do
     expect(board).to be_valid
   end
 
-  it "タイトルが100文字を超えている場合、無効である" do
+  it "タイトルが100文字を以上の場合、無効である" do
     board.title = "a" * 101
     expect(board).to_not be_valid
   end
