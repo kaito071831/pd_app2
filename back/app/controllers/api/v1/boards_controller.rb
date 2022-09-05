@@ -23,7 +23,7 @@ class Api::V1::BoardsController < ApplicationController
 
   def create
     board = Board.new(board_params)
-    if board.save?
+    if board.save
       render json:
         {
           status: 'SUCCESS',
@@ -41,7 +41,7 @@ class Api::V1::BoardsController < ApplicationController
   end
 
   def update
-    if @board.update?(board_params)
+    if @board.update(board_params)
       render json:
         {
           status: 'SUCCESS',
@@ -59,7 +59,7 @@ class Api::V1::BoardsController < ApplicationController
   end
 
   def destroy
-    if @board.destroy?
+    if @board.destroy
       render json:
         {
           status: 'SUCCESS',
