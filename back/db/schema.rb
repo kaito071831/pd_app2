@@ -41,7 +41,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_04_220017) do
     t.datetime "confirmation_sent_at"
     t.string "unconfirmed_email"
     t.string "name"
-    t.string "nickname", null: false
+    t.string "nickname"
     t.string "image"
     t.string "email"
     t.text "tokens"
