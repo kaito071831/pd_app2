@@ -10,9 +10,9 @@ const Sign_in: NextPage = () => {
   const [errorMessage, setErrorMessage] = useState<string>("");
   const handleSubmit = (event: any) => {
     event.preventDefault();
-    const signData = new FormData(event.currentTarget);
+    const signData: FormData = new FormData(event.currentTarget);
     const createAxiosInstance: () => AxiosInstance = () => {
-      if (process.env.NODE_ENV === "development"){
+      if (process.env.NODE_ENV !== "production"){
         return axios.create({
           baseURL: `/api/v1/`,
           headers: {

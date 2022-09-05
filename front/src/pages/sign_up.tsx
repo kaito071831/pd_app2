@@ -10,12 +10,12 @@ const Sign_up: NextPage = () => {
   // 新規ユーザー作成
   const handleSubmit = (event: any) => {
     event.preventDefault();
-    const signData = new FormData(event.currentTarget);
+    const signData: FormData = new FormData(event.currentTarget);
     const email: FormDataEntryValue = signData.get("email");
     const password: FormDataEntryValue = signData.get("password");
     const password_confirmation: FormDataEntryValue = signData.get("password_confirmation");
     const createAxiosInstance: () => AxiosInstance = () => {
-      if (process.env.NODE_ENV === "development"){
+      if (process.env.NODE_ENV !== "production"){
         return axios.create({
           baseURL: `/api/v1/`,
           headers: {
@@ -44,7 +44,6 @@ const Sign_up: NextPage = () => {
           email: email,
           password: password,
           password_confirmation: password_confirmation,
-          nickname: email,
           confirm_success_url: `http://localhost:8000/sign_in`,
         })
         .then(() => {
