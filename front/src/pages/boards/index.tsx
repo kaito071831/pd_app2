@@ -1,4 +1,5 @@
 import { GetServerSideProps } from "next";
+import { Board_index } from "../../components/board_index";
 import { Logout_button } from "../../components/logout_button";
 import { withAuthServerSideProps } from "../../libs/auth";
 import type { Boards, Board } from "../../types/board";
@@ -10,17 +11,12 @@ type Props = {
 }
 
 const Boards = ({data}: Props) => {
-  const boardIndex: Board[] = data.data;
+  const boards: Board[] = data.data;
   return(
     <>
       Boards
       <Logout_button/>
-      {boardIndex.map((board: Board) => (
-        <div key={board.id}>
-          <p>{board.id}</p>
-          <p>{board.title}</p>
-        </div>
-      ))}
+      <Board_index board={boards} />
     </>
   )
 }
