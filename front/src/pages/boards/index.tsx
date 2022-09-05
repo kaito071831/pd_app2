@@ -10,7 +10,7 @@ type Props = {
 }
 
 const Boards = ({data}: Props) => {
-  const boardIndex: Board[] = data.boards;
+  const boardIndex: Board[] = data.data;
   return(
     <>
       Boards
