@@ -1,4 +1,5 @@
 import axios, { AxiosInstance } from "axios";
+import Link from "next/link";
 import { useState } from "react";
 import { getCookie } from "typescript-cookie";
 import { Board } from "../types/board";
@@ -48,7 +49,9 @@ export const Board_index = (props: Props) => {
       <div>
         {boardIndex.map((board) => (
           <div key={board.id}>
-            <p>{board.title}</p>
+            <Link href={"/boards/board"}>
+              <a>{board.title}</a>
+            </Link>
           </div>
         ))}
         <form onSubmit={createBoardSubmit}>
