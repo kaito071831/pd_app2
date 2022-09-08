@@ -49,7 +49,7 @@ export const Board_index = (props: Props) => {
       <div>
         {boardIndex.map((board) => (
           <div key={board.id}>
-            <Link href={"/boards/board"}>
+            <Link href={`/boards/${board.id}`}>
               <a>{board.title}</a>
             </Link>
           </div>
