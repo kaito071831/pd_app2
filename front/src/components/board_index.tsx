@@ -39,6 +39,9 @@ export const Board_index = (props: Props) => {
         .then((response) => {
           setBoardIndex(response.data.data);
         })
+        .then(() => {
+          document.boardForm.reset();
+        })
     })();
   }
   return(
@@ -54,7 +57,7 @@ export const Board_index = (props: Props) => {
             </Link>
           </div>
         ))}
-        <form onSubmit={createBoardSubmit}>
+        <form name="boardForm" onSubmit={createBoardSubmit}>
           <label>タイトル</label>
           <input name="title" title="title" type="text"/>
           <button title="作成" type="submit">作成</button>

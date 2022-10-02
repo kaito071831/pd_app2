@@ -47,6 +47,7 @@ const BoardComment = (props: Props) => {
       uid: getCookie('uid')
     }
     boardChannel.perform('post', {commentData: comment})
+    document.commentForm.reset();
   }
 
   return(
@@ -59,8 +60,8 @@ const BoardComment = (props: Props) => {
           </div>
         ))}
       </div>
-      <form onSubmit={createComment}>
-        <label>タイトル</label>
+      <form name="commentForm" onSubmit={createComment}>
+        <label>名前</label>
         <input name="name" title="name" type="text"/><br/>
         <label>本文</label><br/>
         <textarea name="comment" title="comment" rows={4} cols={40} defaultValue=""/>
