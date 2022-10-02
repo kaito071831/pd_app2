@@ -1,5 +1,5 @@
 class Api::V1::CommentsController < ApplicationController
-  before_action: :authenticate_api_v1_user!
+  before_action :authenticate_api_v1_user!
 
   def index
     comments = Comment.where(board_id: params[:board_id])
