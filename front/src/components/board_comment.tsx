@@ -24,7 +24,6 @@ const BoardComment = (props: Props) => {
     { channel: 'BoardChannel', room: roomName },
     {
       received(data) {
-        console.log(data.comments)
         setComments(data.comments)
       },
 
@@ -38,6 +37,7 @@ const BoardComment = (props: Props) => {
   }
 
   const createComment = (event: any) => {
+    event.preventDefault();
     const commentData = new FormData(event.currentTarget);
     const comment: FormComment = {
       name: commentData.get("name").toString(),
@@ -45,8 +45,7 @@ const BoardComment = (props: Props) => {
       boardId: id,
       uid: getCookie('uid')
     }
-    boardChannel.perform('post', {commentData: comment});
-    event.preventDefault();
+    boardChannel.perform('post', {commentData: comment})
   }
 
   return(
