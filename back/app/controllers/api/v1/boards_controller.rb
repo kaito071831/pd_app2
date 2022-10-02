@@ -17,7 +17,7 @@ class Api::V1::BoardsController < ApplicationController
       {
         status: 'SUCCESS',
         message: 'Loaded board',
-        data: board
+        data: @board
       }
   end
 
@@ -33,7 +33,7 @@ class Api::V1::BoardsController < ApplicationController
     else
       render json:
         {
-          status: 'ERROR',
+          status: 'FAILED',
           message: 'Could not create board',
           data: board.errors
         }
@@ -45,14 +45,14 @@ class Api::V1::BoardsController < ApplicationController
       render json:
         {
           status: 'SUCCESS',
-          message: 'Updated the Board',
+          message: 'Updated the board',
           data: @board
         }
     else
       render json:
         {
           status: 'SUCCESS',
-          message: 'Not updated',
+          message: 'Not update',
           data: @board
         }
     end
@@ -69,7 +69,7 @@ class Api::V1::BoardsController < ApplicationController
     else
       render json:
         {
-          status: 'ERROR',
+          status: 'FAILED',
           message: 'Not deleted',
           data: @board.errors
         }
