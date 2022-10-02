@@ -5,6 +5,7 @@
 - Board
   - title: string
 - Comment
-  - author: User -> uid
+  - name: string
   - comment: text
+  - User -> user_id
   - Board -> board_id
