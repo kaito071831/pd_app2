@@ -12,7 +12,8 @@ export const getServerSideProps: GetServerSideProps = withAuthServerSideProps(`a
 const Board: NextPage = (props: Props) => {
   const router = useRouter();
   const board_id = router.query.boardId;
-  const board: Board = props.data.data[Number(board_id)-1];
+  const boards: Board[] = props.data.data;
+  const board: Board = boards[boards.length - Number(board_id)];
   return(
     <>
       <div>{board.title}</div>
