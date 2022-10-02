@@ -19,22 +19,23 @@ const BoardComment = (props: Props) => {
   const [comments, setComments] = useState<Comment[]>([])
 
   const roomName: string = `Board${id}`
+
+  // Webソケットの通信を行う
   const cable = ActionCable.createConsumer('ws://localhost:3000/cable');
   const boardChannel = cable.subscriptions.create(
     { channel: 'BoardChannel', room: roomName },
     {
+      // コメントを受信した際の処理
       received(data) {
         setComments(data.comments)
       },
 
+      // board_channelのpost関数を実行する
       post: function(message){
         this.perform('post', {comment: message})
       }
     }
   )
-  const test = () => {
-    boardChannel.perform('test', {})
-  }
 
   const createComment = (event: any) => {
     event.preventDefault();
@@ -58,7 +59,6 @@ const BoardComment = (props: Props) => {
           </div>
         ))}
       </div>
-      <button onClick={test}>テスト</button>
       <form onSubmit={createComment}>
         <label>タイトル</label>
         <input name="name" title="name" type="text"/><br/>

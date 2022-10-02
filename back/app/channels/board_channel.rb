@@ -8,10 +8,7 @@ class BoardChannel < ApplicationCable::Channel
     # Any cleanup needed when channel is unsubscribed
   end
 
-  def test
-    ActionCable.server.broadcast("chat:#{params[:room]}", { body: "#{params[:room]}を購読する！"})
-  end
-
+  # コメントをDBに登録してその板のコメントを送信する
   def post(message)
     boardId = message['commentData']['boardId']
 
