@@ -5,6 +5,9 @@ Rails.application.routes.draw do
     namespace :v1 do
       mount_devise_token_auth_for 'User', at: 'auth'
       resources :boards do
+        collection do
+          get 'pagination', to: 'boards#pagination'
+        end
         resources :comments
       end
     end

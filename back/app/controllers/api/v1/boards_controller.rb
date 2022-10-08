@@ -1,4 +1,5 @@
 class Api::V1::BoardsController < ApplicationController
+  include Pagination
   before_action :authenticate_api_v1_user!
   before_action :set_board, only: %w[show update destroy]
 
@@ -9,6 +10,18 @@ class Api::V1::BoardsController < ApplicationController
         status: 'SUCCESS',
         message: 'Loaded boards',
         data: boards
+      }
+  end
+
+  def pagination
+    boards = Board.order(created_at: :desc).page(params[:page]).per(5)
+    pagination = paginate(boards)
+    render json: 
+      {
+        status: 'SUCCESS',
+        message: 'Loaded pagination boards',
+        data: boards,
+        pagination: pagination
       }
   end
 
