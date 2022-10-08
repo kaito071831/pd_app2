@@ -1,6 +1,6 @@
 import { GetServerSideProps, NextPage } from "next";
 import dynamic from "next/dynamic";
-import { useRouter } from "next/router";
+import { NextRouter, useRouter } from "next/router";
 import { withAuthServerSideProps } from "../../libs/auth";
 import { Board, Boards } from "../../types/board";
 
@@ -13,10 +13,11 @@ export const getServerSideProps: GetServerSideProps = withAuthServerSideProps(`a
 const Comments = dynamic(() => import('../../components/board_comment'), { ssr: false })
 
 const Board: NextPage = (props: Props) => {
-  const router = useRouter();
-  const board_id = Number(router.query.boardId);
+  const router: NextRouter = useRouter();
+  const board_id: number = Number(router.query.boardId);
   const boards: Board[] = props.data.data;
-  const board: Board = boards[boards.length - Number(board_id)];
+  const reverse_boards: Board[] = [...boards].reverse();
+  const board: Board = reverse_boards[board_id - 1];
   return(
     <>
       <div>{board.title}</div>
