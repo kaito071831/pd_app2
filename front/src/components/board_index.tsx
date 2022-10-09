@@ -1,7 +1,7 @@
-import axios, { AxiosInstance } from "axios";
+import { AxiosInstance } from "axios";
 import Link from "next/link";
 import { useState } from "react";
-import { getCookie } from "typescript-cookie";
+import { createAxiosInstance } from "../libs/haveSession";
 import { Board } from "../types/board";
 import { Pagination } from "../types/pagination";
 
@@ -15,17 +15,6 @@ export const Board_index = (props: Props) => {
   const [isError, setIsError] = useState<boolean>(false);
   const [errorMessage, setErrorMessage] = useState<string>("");
   const pagination: Pagination = props.pagination;
-  const createAxiosInstance: () => AxiosInstance = () => {
-    return axios.create({
-      baseURL: `/api/v1/`,
-      headers: {
-        "Content-Type": "application/json",
-        uid: getCookie("uid"),
-        client: getCookie("client"),
-        "access-token": getCookie("access-token"),
-      },
-    });
-  }
   const createBoardSubmit = (event: any) => {
     event.preventDefault();
     const boardData: FormData = new FormData(event.currentTarget);

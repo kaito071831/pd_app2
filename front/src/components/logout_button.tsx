@@ -1,7 +1,8 @@
-import axios, { AxiosInstance } from "axios";
+import { AxiosInstance } from "axios";
 import { NextRouter, useRouter } from "next/router"
 import { useState } from "react";
-import { getCookie, removeCookie } from "typescript-cookie";
+import { removeCookie } from "typescript-cookie";
+import { createAxiosInstance } from "../libs/haveSession";
 
 export const Logout_button = () => {
   const router: NextRouter = useRouter();
@@ -9,29 +10,6 @@ export const Logout_button = () => {
   const [errorMeesage, setErrorMessage] = useState<string>("");
   const handleSubmit = (event: any) => {
     event.preventDefault();
-    const createAxiosInstance: () => AxiosInstance = () => {
-      if (process.env.NODE_ENV === "development"){
-        return axios.create({
-          baseURL: `/api/v1/`,
-          headers: {
-            "content-type": "application/json",
-            uid: getCookie("uid"),
-            "access-token": getCookie("access-token"),
-            client: getCookie("client"),
-          },
-        });
-      }
-      return axios.create({
-        baseURL: `${process.env.API_ORIGIN}/api/v1/`,
-        headers: {
-          "content-type": "application/json",
-          uid: getCookie("uid"),
-          "access-token": getCookie("access-token"),
-          client: getCookie("client"),
-        },
-      });
-
-    }
     const axiosInstance: AxiosInstance = createAxiosInstance();
     (async () => {
       setIsError(false);

@@ -1,7 +1,8 @@
 import ActionCable from "actioncable"
-import axios, { AxiosInstance } from "axios";
+import { AxiosInstance } from "axios";
 import { useEffect, useState } from "react";
 import { getCookie } from "typescript-cookie";
+import { createAxiosInstance } from "../libs/haveSession";
 import { Comment } from "../types/comment";
 
 type Props = {
@@ -17,24 +18,14 @@ type FormComment = {
 
 const BoardComment = (props: Props) => {
   const id: number = props.id;
-  const createAxiosInstance: () => AxiosInstance = () => {
-    return axios.create({
-      baseURL: `/api/v1/boards/${id.toString()}/`,
-      headers: {
-        "Content-Type": "application/json",
-        uid: getCookie("uid"),
-        client: getCookie("client"),
-        "access-token": getCookie("access-token"),
-      },
-    });
-  }
+  
   const axiosInstance: AxiosInstance = createAxiosInstance();
 
   const [comments, setComments] = useState<Comment[]>([]);
 
   useEffect(() => {
     (async () => {
-      return await axiosInstance.get("comments")
+      return await axiosInstance.get(`boards/${id.toString()}/comments`)
         .then((response) => {
           setComments(response.data.data);
         })
