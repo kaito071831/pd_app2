@@ -11,13 +11,13 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[7.0].define(version: 2022_09_04_220017) do
-  create_table "boards", charset: "utf8mb4", force: :cascade do |t|
+  create_table "boards", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "title", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "comments", charset: "utf8mb4", force: :cascade do |t|
+  create_table "comments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", default: "名無し", null: false
     t.text "comment", null: false
     t.bigint "user_id", null: false
@@ -28,7 +28,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_04_220017) do
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
-  create_table "users", charset: "utf8mb4", force: :cascade do |t|
+  create_table "users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "provider", default: "email", null: false
     t.string "uid", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -41,8 +41,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_04_220017) do
     t.datetime "confirmation_sent_at"
     t.string "unconfirmed_email"
     t.string "name"
-    t.string "nickname"
-    t.string "image"
     t.string "email"
     t.text "tokens"
     t.integer "sign_in_count", default: 0, null: false
