@@ -47,8 +47,7 @@ const Sign_in: NextPage = () => {
           removeCookie("client");
           removeCookie("access-token");
           setIsError(true);
-          console.log(error.response.data);
-          setErrorMessage(error.response.data);
+          setErrorMessage(error.response.data.errors);
         });
     })();
   }
