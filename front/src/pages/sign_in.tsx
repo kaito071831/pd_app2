@@ -3,6 +3,7 @@ import { NextRouter, useRouter } from "next/router";
 import axios, { AxiosInstance, AxiosResponse } from "axios"
 import { useState } from "react";
 import { removeCookie, setCookie } from "typescript-cookie";
+import { createAxiosInstance } from "../libs/haveSession";
 
 const Sign_in: NextPage = () => {
   const router: NextRouter = useRouter();
@@ -11,22 +12,6 @@ const Sign_in: NextPage = () => {
   const handleSubmit = (event: any) => {
     event.preventDefault();
     const signData: FormData = new FormData(event.currentTarget);
-    const createAxiosInstance: () => AxiosInstance = () => {
-      if (process.env.NODE_ENV !== "production"){
-        return axios.create({
-          baseURL: `/api/v1/`,
-          headers: {
-            "content-type": "application/json",
-          },
-        });
-      }
-      return axios.create({
-        baseURL: `${process.env.API_ORIGIN}/api/v1/`,
-        headers: {
-          "content-type": "application/json",
-        },
-      });
-    }
     const axiosInstance: AxiosInstance = createAxiosInstance();
     (async () => {
       setIsError(false);
