@@ -22,7 +22,7 @@ export const Logout_button = () => {
           removeCookie("access-token");
           router.push("/");
         })
-        .catch(error => {
+        .catch((error: any) => {
           setIsError(true);
           setErrorMessage(error.response.data.errors[0]);
         });
