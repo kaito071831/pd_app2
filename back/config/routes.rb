@@ -7,6 +7,7 @@ Rails.application.routes.draw do
       resources :boards do
         collection do
           get 'pagination', to: 'boards#pagination'
+          get 'search', to: 'boards#search'
         end
         resources :comments
       end

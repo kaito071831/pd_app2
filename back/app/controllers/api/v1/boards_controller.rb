@@ -89,6 +89,28 @@ class Api::V1::BoardsController < ApplicationController
     end
   end
 
+  def search
+    if params[:searchword] == ""
+      boards = Board.order(created_at: :desc).page(params[:page]).per(5)
+      pagination = paginate(boards)
+      render json: 
+        {
+          status: 'SUCCESS',
+          message: 'Loaded pagination boards',
+          data: boards,
+          pagination: pagination
+        }
+    else
+      boards = Board.where('title like ?', "%#{params[:searchword]}%").order(created_at: :desc)    
+      render json:
+        {
+          status: 'SUCCESS',
+          message: 'Load search boards',
+          data: boards,
+        }
+    end
+  end
+
   private
 
   def set_board
