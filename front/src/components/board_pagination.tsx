@@ -20,11 +20,19 @@ export const BoardPagination = (props: BoardPage) => {
   const movePage = (pageNum: number) => {
     const axiosInstance: AxiosInstance = createAxiosInstance();
     (async() => {
-      return await axiosInstance
-        .get(`boards/pagination?page=${pageNum}`)
-        .then((response) => {
-          setBoardIndex(response.data.data);
-        })
+      if (router.query.searchword === ""){
+        return await axiosInstance
+          .get(`boards/pagination?page=${pageNum}`)
+          .then((response) => {
+            setBoardIndex(response.data.data);
+          })
+      } else {
+        return await axiosInstance
+          .get(`boards/search?page=${pageNum}&searchword=${router.query.searchword}`)
+          .then((response) => {
+            setBoardIndex(response.data.data);
+          })
+      }
     })();
   }
 

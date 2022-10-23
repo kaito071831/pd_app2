@@ -16,7 +16,7 @@ export const Board_index = (props: Props) => {
   const [boardIndex, setBoardIndex] = useState<Board[]>(props.boards);
   const [isError, setIsError] = useState<boolean>(false);
   const [errorMessage, setErrorMessage] = useState<string>("");
-  const pagination: Pagination = props.pagination;
+  const [pagination, setPagination] = useState<Pagination>(props.pagination);
   const createBoardSubmit = (event: any) => {
     event.preventDefault();
     const boardData: FormData = new FormData(event.currentTarget);
@@ -45,7 +45,7 @@ export const Board_index = (props: Props) => {
         <p>{errorMessage}</p>
       ) : null}
       <div>
-        <BoardSearch setBoardIndex={setBoardIndex}/>
+        <BoardSearch setBoardIndex={setBoardIndex} setPagination={setPagination}/>
         {boardIndex.map((board) => (
           <div key={board.id}>
             <Link href={`/boards/${board.id}`}>
