@@ -21,13 +21,15 @@ export const BoardSearch = (props: Props) => {
     event.preventDefault();
     const searchData: FormData = new FormData(event.currentTarget);
     const axiosInstance: AxiosInstance = createAxiosInstance();
-    const searchWord = searchData.get("searchword");
+    const searchWord = searchData.get("searchword"); // 検索ボックスのワードを取り出す
     (async() =>{
+      // 検索してその結果とページ情報を格納する
       await axiosInstance.get(`boards/search?searchword=${searchWord}`)
         .then((response: any) => {
           setBoardIndex(response.data.data)
           setPagination(response.data.pagination)
         })
+      // 検索ワードをクエリストリングスに追加する
       await router.push({
           pathname: "/boards",
           query: { searchword: searchWord.toString() }
