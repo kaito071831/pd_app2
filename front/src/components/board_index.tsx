@@ -1,9 +1,11 @@
 import { AxiosInstance } from "axios";
 import Link from "next/link";
-import { useState } from "react";
+import React, { useState } from "react";
 import { createAxiosInstance } from "../libs/haveSession";
 import { Board } from "../types/board";
 import { Pagination } from "../types/pagination";
+import { BoardPagination } from "./board_pagination";
+import { BoardSearch } from "./board_search";
 
 type Props = {
   boards: Board[]
@@ -37,24 +39,13 @@ export const Board_index = (props: Props) => {
     })();
   }
 
-  const range = (start: number, end: number): number[] => [...Array(end - start + 1)].map((_, i) => start + i)
-
-  const movePage = (pageNum: number) => {
-    const axiosInstance: AxiosInstance = createAxiosInstance();
-    (async() => {
-      return await axiosInstance
-        .get(`boards/pagination?page=${pageNum}`)
-        .then((response) => {
-          setBoardIndex(response.data.data);
-        })
-    })();
-  }
   return(
     <>
       {isError ? (
         <p>{errorMessage}</p>
       ) : null}
       <div>
+        <BoardSearch setBoardIndex={setBoardIndex}/>
         {boardIndex.map((board) => (
           <div key={board.id}>
             <Link href={`/boards/${board.id}`}>
@@ -62,11 +53,7 @@ export const Board_index = (props: Props) => {
             </Link>
           </div>
         ))}
-        {range(1, Math.ceil(pagination.total_count / pagination.limit_value)).map((num: number, index: number) => (
-          <Link key={index} href={`/boards`}>
-            <span onClick={() => movePage(num)}>{num}</span>
-          </Link>
-        ))}
+        <BoardPagination setBoardIndex={setBoardIndex} pagination={pagination}/>
         <form name="boardForm" onSubmit={createBoardSubmit}>
           <label>タイトル</label>
           <input name="title" title="title" type="text"/>
