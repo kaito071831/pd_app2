@@ -21,7 +21,7 @@ export const BoardPagination = (props: BoardPage) => {
     const axiosInstance: AxiosInstance = createAxiosInstance();
     (async() => {
       // クエリsearchwordが空ならば通常の一覧そうでなければ検索の一覧のページネーションとして機能させる
-      if (router.query.searchword === ""){
+      if (router.query.searchword === "" || router.query.searchword === undefined){
         return await axiosInstance
           .get(`boards/pagination?page=${pageNum}`)
           .then((response) => {
