@@ -5,13 +5,13 @@ import { Board } from "../types/board";
 import { Pagination } from "../types/pagination";
 
 type BoardPage = {
-  setBoardIndex: React.Dispatch<React.SetStateAction<Board[]>>
+  setBoards: React.Dispatch<React.SetStateAction<Board[]>>
   pagination: Pagination
 }
 
 export const BoardPagination = (props: BoardPage) => {
-  const setBoardIndex = (boards: Board[]) => {
-    props.setBoardIndex(boards);
+  const setBoards = (boards: Board[]) => {
+    props.setBoards(boards);
   }
   const router: NextRouter = useRouter();
   const pagination: Pagination = props.pagination;
@@ -25,13 +25,13 @@ export const BoardPagination = (props: BoardPage) => {
         return await axiosInstance
           .get(`boards/pagination?page=${pageNum}`)
           .then((response) => {
-            setBoardIndex(response.data.data);
+            setBoards(response.data.data);
           })
       } else {
         return await axiosInstance
           .get(`boards/search?page=${pageNum}&searchword=${router.query.searchword}`)
           .then((response) => {
-            setBoardIndex(response.data.data);
+            setBoards(response.data.data);
           })
       }
     })();

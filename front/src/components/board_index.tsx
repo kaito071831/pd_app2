@@ -13,7 +13,7 @@ type Props = {
 }
 
 export const Board_index = (props: Props) => {
-  const [boardIndex, setBoardIndex] = useState<Board[]>(props.boards);
+  const [boards, setBoards] = useState<Board[]>(props.boards);
   const [isError, setIsError] = useState<boolean>(false);
   const [errorMessage, setErrorMessage] = useState<string>("");
   const [pagination, setPagination] = useState<Pagination>(props.pagination);
@@ -31,7 +31,7 @@ export const Board_index = (props: Props) => {
       return await axiosInstance
         .get("boards/pagination")
         .then((response) => {
-          setBoardIndex(response.data.data);
+          setBoards(response.data.data);
         })
         .then(() => {
           document.boardForm.reset();
@@ -45,15 +45,15 @@ export const Board_index = (props: Props) => {
         <p>{errorMessage}</p>
       ) : null}
       <div>
-        <BoardSearch setBoardIndex={setBoardIndex} setPagination={setPagination}/>
-        {boardIndex.map((board) => (
+        <BoardSearch setBoardIndex={setBoards} setPagination={setPagination}/>
+        {boards.map((board) => (
           <div key={board.id}>
             <Link href={`/boards/${board.id}`}>
               <a>{board.title}</a>
             </Link>
           </div>
         ))}
-        <BoardPagination setBoardIndex={setBoardIndex} pagination={pagination}/>
+        <BoardPagination setBoards={setBoards} pagination={pagination}/>
         <form name="boardForm" onSubmit={createBoardSubmit}>
           <label>タイトル</label>
           <input name="title" title="title" type="text"/>

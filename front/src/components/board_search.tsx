@@ -5,13 +5,13 @@ import { Board } from "../types/board"
 import { Pagination } from "../types/pagination"
 
 type Props = {
-  setBoardIndex: React.Dispatch<React.SetStateAction<Board[]>>
+  setBoards: React.Dispatch<React.SetStateAction<Board[]>>
   setPagination: React.Dispatch<React.SetStateAction<Pagination>>
 }
 
 export const BoardSearch = (props: Props) => {
-  const setBoardIndex = (boards: Board[]) => {
-    props.setBoardIndex(boards);
+  const setBoards = (boards: Board[]) => {
+    props.setBoards(boards);
   }
   const setPagination = (pagination: Pagination) => {
     props.setPagination(pagination);
@@ -26,7 +26,7 @@ export const BoardSearch = (props: Props) => {
       // 検索してその結果とページ情報を格納する
       await axiosInstance.get(`boards/search?searchword=${searchWord}`)
         .then((response: any) => {
-          setBoardIndex(response.data.data)
+          setBoards(response.data.data)
           setPagination(response.data.pagination)
         })
       // 検索ワードをクエリストリングスに追加する
