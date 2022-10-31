@@ -45,7 +45,7 @@ export const Board_index = (props: Props) => {
         <p>{errorMessage}</p>
       ) : null}
       <div>
-        <BoardSearch setBoardIndex={setBoards} setPagination={setPagination}/>
+        <BoardSearch setBoards={setBoards} setPagination={setPagination}/>
         {boards.map((board) => (
           <div key={board.id}>
             <Link href={`/boards/${board.id}`}>
