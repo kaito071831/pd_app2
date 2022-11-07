@@ -1,6 +1,7 @@
 import { GetServerSideProps, NextPage } from "next";
 import dynamic from "next/dynamic";
 import { NextRouter, useRouter } from "next/router";
+import { Header } from "../../components/header";
 import { withAuthServerSideProps } from "../../libs/auth";
 import { Board, Boards } from "../../types/board";
 
@@ -20,6 +21,7 @@ const Board: NextPage = (props: Props) => {
   const board: Board = reverse_boards[board_id - 1];
   return(
     <>
+      <Header/>
       <div>{board.title}</div>
       <div>
         <Comments id={board_id}/>

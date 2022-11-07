@@ -1,3 +1,4 @@
+import { Alert, Snackbar } from "@mui/material";
 import { AxiosInstance } from "axios";
 import Link from "next/link";
 import React, { useState } from "react";
@@ -41,9 +42,9 @@ export const Board_index = (props: Props) => {
 
   return(
     <>
-      {isError ? (
-        <p>{errorMessage}</p>
-      ) : null}
+      <Snackbar open={isError} autoHideDuration={60}>
+        <Alert severity="error" onClose={() => { setIsError(false) }}>{errorMessage}</Alert>
+      </Snackbar>
       <div>
         <BoardSearch setBoards={setBoards} setPagination={setPagination}/>
         {boards.map((board) => (

@@ -16,7 +16,7 @@ const Boards = ({data}: Props) => {
   const pagination: Pagination = data.pagination;
   return(
     <>
-      Boards
+      <Header/>
       <Logout_button/>
       <Board_index boards={boards} pagination={pagination} />
     </>
