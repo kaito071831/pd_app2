@@ -44,10 +44,6 @@ export const BoardPagination = (props: BoardPage) => {
 
   return(
     <>
-      {/* {range(1, Math.ceil(pagination.total_count / pagination.limit_value)).map((num: number, index: number) => (
-        <span key={index} onClick={() => movePage(num)}>{num}</span>
-      ))} */}
-      <p>{page}</p>
       <Pagination
         count={Math.ceil(pagination.total_count / pagination.limit_value)}
         page={page}

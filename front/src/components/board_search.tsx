@@ -41,8 +41,6 @@ export const BoardSearch = (props: Props) => {
   return(
     <>
       <form onSubmit={searchBoard}>
-        {/* <input type="text" name="searchword" placeholder="ワードを入力"/>
-        <button type="submit">検索</button> */}
         <FormControl variant="outlined" margin="dense" sx={{mt: 2}}>
           <InputLabel htmlFor="outlined-adornment-search" size="small">検索</InputLabel>
           <OutlinedInput

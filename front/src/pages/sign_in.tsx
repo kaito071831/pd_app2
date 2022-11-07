@@ -99,7 +99,6 @@ const Sign_in: NextPage = () => {
               }
               label="Password"
             />
-            {/* <TextField name="password" size="small" label="パスワード" type="password" autoComplete="current-password"/> */}
             <Button variant="contained" type="submit" title="ログイン" sx={{margin: 2}}>ログイン</Button>
           </FormControl>
         </form>
