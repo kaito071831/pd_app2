@@ -21,10 +21,8 @@ export const BoardPagination = (props: BoardPage) => {
 
   // const range = (start: number, end: number): number[] => [...Array(end - start + 1)].map((_, i) => start + i)
   const movePage = (event: React.ChangeEvent<unknown>, value: number) => {
-    console.log(`value: ${value}`);
     const newPage: number = value;
     setPage(newPage);
-    console.log(`page: ${newPage}`);
     const axiosInstance: AxiosInstance = createAxiosInstance();
     (async() => {
       // クエリsearchwordが空ならば通常の一覧そうでなければ検索の一覧のページネーションとして機能させる
