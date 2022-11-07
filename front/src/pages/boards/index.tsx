@@ -1,6 +1,7 @@
+import { Container } from "@mui/material";
 import { GetServerSideProps } from "next";
 import { Board_index } from "../../components/board_index";
-import { Logout_button } from "../../components/logout_button";
+import { Header } from "../../components/header";
 import { withAuthServerSideProps } from "../../libs/auth";
 import type { Board, PageBoards } from "../../types/board";
 import { Pagination } from "../../types/pagination";
@@ -17,8 +18,9 @@ const Boards = ({data}: Props) => {
   return(
     <>
       <Header/>
-      <Logout_button/>
-      <Board_index boards={boards} pagination={pagination} />
+      <Container fixed>
+        <Board_index boards={boards} pagination={pagination} />
+      </Container>
     </>
   )
 }

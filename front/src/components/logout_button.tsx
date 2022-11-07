@@ -1,13 +1,15 @@
+import { Alert, IconButton, Snackbar } from "@mui/material";
 import { AxiosInstance } from "axios";
 import { NextRouter, useRouter } from "next/router"
 import { useState } from "react";
 import { removeCookie } from "typescript-cookie";
 import { createAxiosInstance } from "../libs/haveSession";
+import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 
 export const Logout_button = () => {
   const router: NextRouter = useRouter();
   const [isError, setIsError] = useState<boolean>(false);
-  const [errorMeesage, setErrorMessage] = useState<string>("");
+  const [errorMessage, setErrorMessage] = useState<string>("");
   const handleSubmit = (event: any) => {
     event.preventDefault();
     const axiosInstance: AxiosInstance = createAxiosInstance();
@@ -30,10 +32,14 @@ export const Logout_button = () => {
   }
   return(
     <>
-      <button type="submit" onClick={handleSubmit}>ログアウト</button>
-      {isError ? (
-        <p>{errorMeesage}</p>
-      ) : null}
+      <div>
+        <IconButton type="submit" edge="end" onClick={handleSubmit}>
+          <ExitToAppIcon color="error" titleAccess="SignOut"/>
+        </IconButton>
+        <Snackbar open={isError} autoHideDuration={60}>
+          <Alert severity="error" onClose={() => { setIsError(false) }}>{errorMessage}</Alert>
+        </Snackbar>
+      </div>
     </>
   )
 }

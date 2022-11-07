@@ -1,8 +1,10 @@
+import { FormControl, IconButton, InputAdornment, InputLabel, OutlinedInput } from "@mui/material"
 import { AxiosInstance } from "axios"
 import { NextRouter, useRouter } from "next/router"
 import { createAxiosInstance } from "../libs/haveSession"
 import { Board } from "../types/board"
 import { Pagination } from "../types/pagination"
+import SearchIcon from '@mui/icons-material/Search';
 
 type Props = {
   setBoards: React.Dispatch<React.SetStateAction<Board[]>>
@@ -39,8 +41,28 @@ export const BoardSearch = (props: Props) => {
   return(
     <>
       <form onSubmit={searchBoard}>
-        <input type="text" name="searchword" placeholder="ワードを入力"/>
-        <button type="submit">検索</button>
+        {/* <input type="text" name="searchword" placeholder="ワードを入力"/>
+        <button type="submit">検索</button> */}
+        <FormControl variant="outlined" margin="dense" sx={{mt: 2}}>
+          <InputLabel htmlFor="outlined-adornment-search" size="small">検索</InputLabel>
+          <OutlinedInput
+            id="outlined-adornment-search"
+            size="small"
+            name="searchword"
+            type="text"
+            endAdornment={
+              <InputAdornment position="end">
+                <IconButton
+                  type="submit"
+                  edge="end"
+                  >
+                  <SearchIcon />
+                </IconButton>
+              </InputAdornment>
+            }
+            label="検索"
+            />
+          </FormControl>
       </form>
     </>
   )
