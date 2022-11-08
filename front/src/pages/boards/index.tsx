@@ -18,7 +18,7 @@ const Boards = ({data}: Props) => {
   return(
     <>
       <Header/>
-      <Container fixed>
+      <Container>
         <Board_index boards={boards} pagination={pagination} />
       </Container>
     </>
