@@ -1,6 +1,6 @@
 import { NextPage } from "next";
 import { NextRouter, useRouter } from "next/router";
-import axios, { AxiosInstance, AxiosResponse } from "axios"
+import { AxiosInstance, AxiosResponse } from "axios"
 import { useState } from "react";
 import { removeCookie, setCookie } from "typescript-cookie";
 import { createAxiosInstance } from "../libs/haveSession";
