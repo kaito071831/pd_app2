@@ -61,7 +61,7 @@ export const Board_index = (props: Props) => {
       </div>
       <div>
         <form name="boardForm" onSubmit={createBoardSubmit}>
-          <FormControl variant="outlined" margin="dense" sx={{mt: 2, width: "100%"}}>
+          <FormControl variant="outlined" margin="dense" fullWidth sx={{mt: 2}}>
             <InputLabel htmlFor="outlined-adornment-createBoard" size="small">タイトル</InputLabel>
             <OutlinedInput
               id="outlined-adornment-createBoard"
