@@ -1,4 +1,4 @@
-import { Alert, Snackbar } from "@mui/material";
+import { Alert, FormControl, IconButton, InputAdornment, InputLabel, OutlinedInput, Snackbar } from "@mui/material";
 import { AxiosInstance } from "axios";
 import Link from "next/link";
 import React, { useState } from "react";
@@ -7,6 +7,7 @@ import { Board } from "../types/board";
 import { Pagination } from "../types/pagination";
 import { BoardPagination } from "./board_pagination";
 import { BoardSearch } from "./board_search";
+import AddCircleIcon from '@mui/icons-material/AddCircle';
 
 type Props = {
   boards: Board[]
@@ -54,11 +55,32 @@ export const Board_index = (props: Props) => {
             </Link>
           </div>
         ))}
+      </div>
+      <div>
         <BoardPagination setBoards={setBoards} pagination={pagination}/>
+      </div>
+      <div>
         <form name="boardForm" onSubmit={createBoardSubmit}>
-          <label>タイトル</label>
-          <input name="title" title="title" type="text"/>
-          <button title="作成" type="submit">作成</button>
+          <FormControl variant="outlined" margin="dense" sx={{mt: 2, width: "100%"}}>
+            <InputLabel htmlFor="outlined-adornment-createBoard" size="small">タイトル</InputLabel>
+            <OutlinedInput
+              id="outlined-adornment-createBoard"
+              size="small"
+              name="title"
+              type="text"
+              endAdornment={
+                <InputAdornment position="end">
+                  <IconButton
+                    type="submit"
+                    edge="end"
+                    >
+                    <AddCircleIcon/>
+                  </IconButton>
+                </InputAdornment>
+              }
+              label="タイトル"
+            />
+          </FormControl>
         </form>
       </div>
     </>
