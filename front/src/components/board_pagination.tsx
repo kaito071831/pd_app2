@@ -48,6 +48,7 @@ export const BoardPagination = (props: BoardPage) => {
         count={Math.ceil(pagination.total_count / pagination.limit_value)}
         page={page}
         onChange={movePage}
+        size="large"
         showFirstButton
         showLastButton
       />

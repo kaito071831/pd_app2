@@ -47,7 +47,7 @@ export const BoardSearch = (props: Props) => {
             id="outlined-adornment-search"
             size="small"
             name="searchword"
-            type="text"
+            type="search"
             endAdornment={
               <InputAdornment position="end">
                 <IconButton
