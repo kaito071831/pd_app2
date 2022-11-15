@@ -6,7 +6,7 @@ import { removeCookie } from "typescript-cookie";
 import { createAxiosInstance } from "../libs/haveSession";
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 
-export const Logout_button = () => {
+export const Signout_button = () => {
   const router: NextRouter = useRouter();
   const [isError, setIsError] = useState<boolean>(false);
   const [errorMessage, setErrorMessage] = useState<string>("");
