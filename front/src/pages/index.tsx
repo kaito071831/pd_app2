@@ -1,11 +1,12 @@
 import { NextPage } from "next";
 import Link from "next/link";
+import { Header } from "../components/header";
 
 
 const Home: NextPage = () => {
   return (
     <div>
-      <h1>Sample</h1>
+      <Header/>
       <Link href="/sign_in">
         <a>サインイン</a>
       </Link>
