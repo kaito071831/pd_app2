@@ -1,9 +1,12 @@
+import { Box, FormControl, IconButton, InputAdornment, InputLabel, OutlinedInput, TextField } from "@mui/material";
+import { Container } from "@mui/system";
 import ActionCable from "actioncable"
 import { AxiosInstance } from "axios";
 import { useEffect, useState } from "react";
 import { getCookie } from "typescript-cookie";
 import { createAxiosInstance } from "../libs/haveSession";
 import { Comment } from "../types/comment";
+import AddCircleIcon from '@mui/icons-material/AddCircle';
 
 type Props = {
   id: number
@@ -66,21 +69,62 @@ const BoardComment = (props: Props) => {
 
   return(
     <>
-      <div>
-        {comments.map((comment: Comment) => (
-          <div key={comment.id}>
-            <div>{comment.name}</div>
-            <div>{comment.comment}</div>
-          </div>
-        ))}
-      </div>
-      <form name="commentForm" onSubmit={createComment}>
-        <label>名前</label>
-        <input name="name" title="name" type="text"/><br/>
-        <label>本文</label><br/>
-        <textarea name="comment" title="comment" rows={4} cols={40} defaultValue=""/>
-        <button title="作成" type="submit">作成</button>
-      </form>
+      <Container component={"div"} sx={{textAlign: "center"}}>
+        <Box component={"div"} sx={{
+          bgcolor: "#EFEFEF",
+          p: 2,
+          borderRadius: 5
+        }}>
+          {comments.map((comment: Comment, index: number) => {
+            const date = new Date(comment.updated_at).toLocaleString()
+            return(
+            <Box component={"div"} key={comment.id} sx={{
+              textAlign: "left",
+              mb: 2
+            }}>
+              <Box component={"div"}>
+                {index + 1}名前: {comment.name} {date}
+              </Box>
+              <Box component={"div"} sx={{textAlign: "left"}}>{comment.comment}</Box>
+            </Box>
+          )})}
+          <Box component={"div"} sx={{
+            textAlign: "left",
+            pt: 2,
+            borderTop: 1 
+          }}>
+            <form name="commentForm" onSubmit={createComment}>
+              <FormControl variant="outlined" margin="dense" fullWidth>
+                <TextField name="name" size="small" label="名前"/><br/>
+              </FormControl>
+              <FormControl variant="outlined" margin="dense" fullWidth>
+                <InputLabel htmlFor="outlined-adornment" size="small">本文</InputLabel>
+                <OutlinedInput
+                  id="outlined-adornment"
+                  size="small"
+                  name="comment"
+                  multiline
+                  rows={4}
+                  label="本文"
+                  endAdornment={
+                    <InputAdornment position="end">
+                      <IconButton
+                        type="submit"
+                        edge="end"
+                        sx={{
+                          cursor: "pointer"
+                        }}
+                      >
+                        <AddCircleIcon/>
+                      </IconButton>
+                    </InputAdornment>
+                  }
+                />
+              </FormControl>
+            </form>
+          </Box>
+        </Box>
+      </Container>
     </>
   )
 }

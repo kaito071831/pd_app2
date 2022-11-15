@@ -1,4 +1,4 @@
-import { Alert, FormControl, IconButton, InputAdornment, InputLabel, OutlinedInput, Snackbar } from "@mui/material";
+import { Alert, Box, FormControl, Grid, IconButton, InputAdornment, InputLabel, OutlinedInput, Paper, Snackbar } from "@mui/material";
 import { AxiosInstance } from "axios";
 import Link from "next/link";
 import React, { useState } from "react";
@@ -48,17 +48,34 @@ export const Board_index = (props: Props) => {
       </Snackbar>
       <div>
         <BoardSearch setBoards={setBoards} setPagination={setPagination}/>
-        {boards.map((board) => (
-          <div key={board.id}>
-            <Link href={`/boards/${board.id}`}>
-              <a>{board.title}</a>
-            </Link>
-          </div>
-        ))}
+        <div>
+          {boards.map((board) => (
+            <div key={board.id}>
+              <Link href={`/boards/${board.id}`}>
+                <Paper elevation={5} variant="elevation" sx={{
+                  m: 2,
+                  height: 80
+                }}>
+                  <Box component="p" sx={{
+                    height: "100%",
+                    lineHeight: 4,
+                    textAlign: "center",
+                    cursor: "pointer"
+                  }}>
+                    {board.title}
+                  </Box>
+                </Paper>
+              </Link>
+            </div>
+          ))}
+        </div>
       </div>
-      <div>
+      <Grid container justifyContent="center" sx={{
+        mt: 2,
+        mb: 2
+      }}>
         <BoardPagination setBoards={setBoards} pagination={pagination}/>
-      </div>
+      </Grid>
       <div>
         <form name="boardForm" onSubmit={createBoardSubmit}>
           <FormControl variant="outlined" margin="dense" fullWidth sx={{mt: 2}}>
@@ -73,6 +90,9 @@ export const Board_index = (props: Props) => {
                   <IconButton
                     type="submit"
                     edge="end"
+                    sx={{
+                      cursor: "pointer"
+                    }}
                     >
                     <AddCircleIcon/>
                   </IconButton>

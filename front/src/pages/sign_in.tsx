@@ -4,14 +4,24 @@ import { AxiosInstance, AxiosResponse } from "axios"
 import { useState } from "react";
 import { removeCookie, setCookie } from "typescript-cookie";
 import { createAxiosInstance } from "../libs/haveSession";
-import { Alert, Button, Container, FormControl, IconButton, InputAdornment, InputLabel, OutlinedInput, Snackbar, TextField, Typography } from "@mui/material";
+import Alert from "@mui/material/Alert";
+import Button from "@mui/material/Button";
+import Container from "@mui/material/Container";
+import FormControl from "@mui/material/FormControl";
+import IconButton from "@mui/material/IconButton";
+import InputAdornment from "@mui/material/InputAdornment";
+import InputLabel from "@mui/material/InputLabel";
+import OutlinedInput from "@mui/material/OutlinedInput";
+import Snackbar from "@mui/material/Snackbar";
+import TextField from "@mui/material/TextField";
+import Box from "@mui/material/Box";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
+import { Header } from "../components/header";
 
 interface State {
   password: string;
   showPassword: boolean;
 }
-
 
 const Sign_in: NextPage = () => {
   const router: NextRouter = useRouter();
@@ -67,16 +77,17 @@ const Sign_in: NextPage = () => {
   }
   return(
     <>
+      <Header/>
       <Snackbar open={isError} autoHideDuration={60}>
         <Alert severity="error" onClose={() => { setIsError(false) }}>{errorMessage}</Alert>
       </Snackbar>
       <Container>
-        <Typography align="center" variant="h3">サインイン</Typography>
+        <Box component="h3" sx={{textAlign: "center"}}>サインイン</Box>
         <form onSubmit={handleSubmit}>
-          <FormControl variant="outlined" margin="dense" sx={{width: '100%'}}>
-            <TextField name="email" size="small" label="メールアドレス" autoComplete="email" autoFocus/>
+          <FormControl variant="outlined" margin="dense" fullWidth>
+            <TextField name="email" type="email" size="small" label="メールアドレス" autoComplete="email" autoFocus/>
           </FormControl>
-          <FormControl variant="outlined" margin="dense" sx={{width: '100%'}}>
+          <FormControl variant="outlined" margin="dense" fullWidth>
             <InputLabel htmlFor="outlined-adornment-password" size="small">パスワード</InputLabel>
             <OutlinedInput
               id="outlined-adornment-password"

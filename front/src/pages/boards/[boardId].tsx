@@ -1,3 +1,5 @@
+import { Box } from "@mui/material";
+import { Container } from "@mui/system";
 import { GetServerSideProps, NextPage } from "next";
 import dynamic from "next/dynamic";
 import { NextRouter, useRouter } from "next/router";
@@ -22,10 +24,12 @@ const Board: NextPage = (props: Props) => {
   return(
     <>
       <Header/>
-      <div>{board.title}</div>
-      <div>
-        <Comments id={board_id}/>
-      </div>
+      <Container maxWidth={"md"}>
+        <Box component={"h2"} sx={{textAlign: "center"}}>{board.title}</Box>
+        <Box component={"div"}>
+          <Comments id={board_id}/>
+        </Box>
+      </Container>
     </>
   )
 }
