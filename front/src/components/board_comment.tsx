@@ -38,7 +38,7 @@ const BoardComment = (props: Props) => {
   const roomName: string = `Board${id}`
 
   // Webソケットの通信を行う
-  const cable = ActionCable.createConsumer('ws://localhost:3000/cable');
+  const cable = ActionCable.createConsumer(`ws://${process.env.API_ORIGIN}/cable`);
   const boardChannel = cable.subscriptions.create(
     { channel: 'BoardChannel', room: roomName },
     {

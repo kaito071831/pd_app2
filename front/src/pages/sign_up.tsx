@@ -59,14 +59,6 @@ const Sign_up: NextPage = () => {
     const password: FormDataEntryValue = signData.get("password");
     const password_confirmation: FormDataEntryValue = signData.get("password_confirmation");
     const createAxiosInstance: () => AxiosInstance = () => {
-      if (process.env.NODE_ENV !== "production"){
-        return axios.create({
-          baseURL: `/api/v1/`,
-          headers: {
-            "content-type": "application/json",
-          },
-        });
-      }
       return axios.create({
         baseURL: `${process.env.API_ORIGIN}/api/v1/`,
         headers: {
@@ -88,7 +80,7 @@ const Sign_up: NextPage = () => {
           email: email,
           password: password,
           password_confirmation: password_confirmation,
-          confirm_success_url: `http://localhost:8000/sign_in`,
+          confirm_success_url: `${process.env.APP_ORIGIN}/sign_in`,
         })
         .then(() => {
           setIsSendEmail(true);

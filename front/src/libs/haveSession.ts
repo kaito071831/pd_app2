@@ -3,7 +3,7 @@ import { getCookie } from "typescript-cookie";
 
 export const createAxiosInstance: () => AxiosInstance = () => {
   return axios.create({
-    baseURL: `/api/v1/`,
+    baseURL: `${process.env.API_ORIGIN}/api/v1/`,
     headers: {
       "Content-Type": "application/json",
       uid: getCookie("uid"),
