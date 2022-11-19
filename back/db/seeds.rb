@@ -10,4 +10,7 @@ if Rails.env.development?
   user = User.new(email: "test@planet.kanazawa-it.ac.jp", password: "password")
   user.skip_confirmation!
   user.save!
+  subUser = User.new(email: "c1195107@planet.kanazawa-it.ac.jp", password: "password")
+  subUser.skip_confirmation!
+  subUser.save!
 end
