@@ -165,7 +165,7 @@ const Sign_up: NextPage = () => {
               label="ConfirmPassword"
             />
           </FormControl>
-          <Button variant="contained" type="submit" title="サインアップ" sx={{margin: 2}}>サインイン</Button>
+          <Button variant="contained" type="submit" title="サインアップ" sx={{margin: 2}}>サインアップ</Button>
         </form>
       </Container>
     </>
