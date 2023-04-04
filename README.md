@@ -10,3 +10,12 @@
 - Node.js 16.13.0
 - Next.js 12.2.5
 - MySQL 8.0.30
+
+# 環境変数
+```
+DB_USERNAME: DBのユーザー名
+DB_PASSWORD: DBのパスワード
+DB_HOST: DBの名前
+MAIL_USER: メールの配信用アドレス
+MAIL_PASSWORD: メールのアプリケーション用パスワード
+```
